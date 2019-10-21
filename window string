@@ -1,0 +1,53 @@
+string Solution::minWindow(string A, string B) {
+    
+    
+    unordered_map<char ,int > hash_pat,hash_str;
+    
+    for(int i=0;i<B.size();i++)
+    hash_pat[B[i]]++;
+    
+    
+    int mj=-1,ml = INT_MAX;
+    
+    int l=0,j=0;
+    
+    for(int i=0;i<A.size();i++)
+    {
+        
+        char c = A[i];
+        hash_str[c]++;
+        if(hash_str[c] <= hash_pat[c])
+        l++;
+        
+        
+        while(j <= i && hash_str[A[j]] > hash_pat[A[j]])
+        {
+    
+        hash_str[A[j]]--;
+        j++;
+    
+        }
+        
+        
+        if(l==B.size())
+        {
+            if(i-j+1 < ml)
+            {
+                ml = i-j+1;
+                mj = j;
+            }
+            
+            
+        }
+        
+    }
+    
+    
+    if(mj==-1)
+    return "";
+    
+    return A.substr(j , ml);
+    
+    
+    
+}
