@@ -1,0 +1,88 @@
+int Solution::isValidSudoku(const vector<string> &A) {
+    
+    cout<<"a"<<endl;
+    
+    unordered_set<char> s;
+    for(int i=0;i<9;i++)
+    {
+        for(int j=0;j<9;j++)
+        {
+            if(A[i][j]=='.')
+            continue;
+            
+            if(s.find(A[i][j]) != s.end())
+            {cout<<"1 "<<i<<" "<<j<<endl;
+            
+            return 0;
+            }
+            s.insert(A[i][j]);
+            
+        }
+        
+        
+        s.clear();
+        
+        
+    }
+    cout<<"b"<<endl;
+    
+    
+    for(int j=0;j<9;j++)
+    {
+        for(int i=0;i<9;i++)
+        {
+            if(A[i][j]=='.')
+            continue;
+            
+            if(s.find(A[i][j]) != s.end())
+            {cout<<"2 "<<i<<" "<<j<<endl;
+            return 0;
+            }
+            
+            
+            s.insert(A[i][j]);
+            
+        }
+        
+        s.clear();
+    }
+    
+    cout<<"c"<<endl;
+    
+    
+    for(int sr=0;sr<3;sr++)
+    {
+        for(int sc=0;sc<3;sc++)
+        {
+            
+            for(int r=3*sr;r<3*sr+3;r++)
+            {
+                for(int c=3*sc;c<3*sc+3;c++)
+                {
+                    if(A[r][c] == '.')
+                    return 0;
+                    
+                    if(s.find(A[r][c]) != s.end())
+                    {
+                        
+                    cout<<"3 "<<r<<" "<<c<<endl;
+                    return 0;
+                    }
+                
+                    s.insert(A[r][c]);
+                    
+                }
+                
+                
+            }
+            s.clear();
+            
+        }
+    }
+    
+    cout<<"d"<<endl;
+    
+    return  1;
+    
+    
+}
