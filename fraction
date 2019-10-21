@@ -1,0 +1,72 @@
+string Solution::fractionToDecimal(int a, int b) {
+    
+    long int A = a;
+    long int B = b;
+    
+    int sign = 1;
+    
+    
+    if((A<0) || (B<0))
+    sign = -1;
+    
+    if(A<0 && B < 0)
+    sign = 1;
+    
+    
+    
+    A = abs(A);
+    B =  abs(B);
+    
+    
+    string res;
+    
+    long int k=A/B;
+
+    if(A%B==0)
+    {
+            res = to_string(k);
+
+        return res;
+        
+    }
+    
+    if(sign == -1)
+    res.push_back('-');
+    
+    res += to_string(k);
+    res.push_back('.');
+    
+    
+    unordered_map<long int ,int > m;
+    
+long int rem = A%B;
+     
+
+     while(rem)
+     {
+         if(m.find(rem) != m.end())
+         {
+            
+            res.insert(res.begin() + m[rem] , '(');
+            res.push_back(')');
+            break;
+                          
+         }
+         
+         
+         
+         m[rem] = res.size();
+         rem = rem*10;
+         res.push_back(rem/B + '0');
+         rem = rem%B;
+         
+         
+     }
+    
+    
+    
+    
+    return res;
+    
+    
+}
