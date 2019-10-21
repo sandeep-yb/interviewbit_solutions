@@ -1,0 +1,35 @@
+int Solution::lengthOfLongestSubstring(string A) {
+    
+    
+    int ml=0,i=0,j=0;
+    unordered<set> s;
+    
+    for(i=0;i<A.size();i++)
+    {
+        
+        if(s.find(A[i]) == s.end())
+        {
+            
+            ml = max(ml , i-j+1);
+            
+        }
+        
+        else
+        {
+            
+            while(A[j] != A[i])
+            {
+                s.erase(A[j]);
+                j++;
+            }
+            
+            j++;
+            
+            
+        }
+        
+    }
+    return  ml;
+    
+    
+}
