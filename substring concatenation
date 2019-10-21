@@ -1,0 +1,52 @@
+vector<int> Solution::findSubstring(string A, const vector<string> &B) {
+    
+    
+    unordered_map<string ,int > hash_pat,hash_str;
+    
+    vector<int > res;
+    
+    for(int i=0;i<B.size();i++)
+    hash_pat[B[i]]++;
+    
+    int l=B[0].size();
+    
+    int n=B.size();
+    
+    for(int i=0;i<A.size();i++)
+    {
+        int c = 0;
+        for(int j=i;j+l-1<A.size();j+=l)
+        {
+            
+            string s = A.substr(j,l);
+            
+            hash_str[s]++;
+            if(hash_str[s] <= hash_pat[s])
+            {
+                c++;
+            }
+            
+            else
+            {   
+                break;
+            }
+            
+            
+            if(c==n)
+            {
+                
+                res.push_back(i);
+                break;
+            }
+            
+            
+        }
+        
+        hash_str.clear();
+        
+        
+    }
+    
+    return res;
+    
+}
