@@ -1,0 +1,25 @@
+vector<vector<int> > Solution::anagrams(const vector<string> &A) {
+    
+    vector<vector<int > > res;
+    unordered_map<string,vector<int > > m;
+    for(int i=0;i<A.size();i++)
+    {
+        string s= A[i];
+        sort(s.begin() , s.end());
+        m[s].push_back(i+1);
+        
+    }
+    
+    
+    for(pair<string ,vector<int > > v:m)
+    {
+        res.push_back(v.second);
+    }
+    
+    sort(res.begin() , res.end());
+    
+    return res;
+    
+    
+    
+}
